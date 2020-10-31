@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>µService A 0.0.1</title>
+    <link rel="stylesheet" style="text/css" href="deps/bootstrap.css" />
+    <script language='javascript'>
+
+        function changeBgColor()  { 
+            if (document.body.style.backgroundColor == 'yellow'){
+                document.body.style.backgroundColor = 'white'
+            } else{
+                document.body.style.backgroundColor = 'yellow';
+            }
+        } 
+    </script>
+    <script language='javascript'>
+        function callToJavaFX(val)  {
+            myJavaMember.printReply(val);
+        }
+    </script>
+  </head>
+  <body>
+    <h1>µService A 0.0.1</h1>
+    <form></form>
+    <div id="res" class="alert"></div>
+    <script type="text/javascript" src="deps/jquery.min.js"></script>
+    <script type="text/javascript" src="deps/underscore.js"></script>
+    <script type="text/javascript" src="deps/jsv.js"></script>
+    <script type="text/javascript" src="deps/jsonform.js"></script>
+    <script type="text/javascript">
+      $('form').jsonForm({
+        schema: {
+          name: {
+            type: 'string',
+            title: 'Name',
+            required: true
+          },
+          age: {
+            type: 'number',
+            title: 'Age'
+          }
+        },
+        onSubmit: function (errors, values) {
+          if (errors) {
+            $('#res').html('<p>I beg your pardon?</p>');
+          }
+          else {
+            $('#res').html('<p>Hello ' + values.name + '.' +
+              (values.age ? '<br/>You are ' + values.age + '.' : '') +
+              '</p>');
+          }
+        }
+      });
+    </script>
+    <h2>call JavaFX</h2>
+    <button onclick='callToJavaFX("coucou from µserviceA release 0.0.1");'>Call To JavaFX</button>
+
+   </body>
+</html>
